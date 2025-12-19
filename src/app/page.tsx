@@ -6,7 +6,7 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="text-center mb-16">
         <h1 className="text-4xl md:text-6xl font-bold text-[#E8DCB9]">
-          Hi, I’m Lola
+          Hi, I’m Lola Heurtevin
         </h1>
         <p className="mt-4 text-lg md:text-xl text-[#F2CEE6]">
           A passionate Fullstack Developer crafting clean and scalable solutions.
