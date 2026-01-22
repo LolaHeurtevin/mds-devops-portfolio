@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react';
 import { initializeFaro } from '@grafana/faro-web-sdk';
-import { getWebInstrumentations, initializeWebTracing } from '@grafana/faro-web-tracing';
 
 let faroInitialized = false;
 
@@ -30,17 +29,6 @@ export function FaroProvider() {
           version: '0.1.0',
           environment: process.env.NEXT_PUBLIC_ENV || 'development',
         },
-        instrumentations: [
-          ...getWebInstrumentations({
-            captureConsole: true,
-          }),
-          initializeWebTracing({
-            captureInteractions: true,
-          }),
-        ],
-        sessionSampleRate: process.env.NEXT_PUBLIC_FARO_SAMPLE_RATE 
-          ? parseFloat(process.env.NEXT_PUBLIC_FARO_SAMPLE_RATE) 
-          : 1.0,
       });
 
       faroInitialized = true;
