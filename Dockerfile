@@ -35,5 +35,8 @@ COPY --from=base /app/node_modules ./node_modules
 # Expose the port the app runs on
 EXPOSE 3000
 
+# Enable OpenTelemetry instrumentation for Node.js
+ENV NODE_OPTIONS="--require @opentelemetry/auto-instrumentations-node/build/src/instrumentation.js"
+
 # Start the Next.js application
 CMD ["npm", "start"]

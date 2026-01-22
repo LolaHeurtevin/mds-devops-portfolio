@@ -10,3 +10,15 @@ services:
     restart: always
     environment:
       - NODE_ENV=production
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT:-https://otlp-gateway-prod-us-central-0.grafana.net}
+      - GRAFANA_OTLP_API_TOKEN=${GRAFANA_OTLP_API_TOKEN}
+      - NEXT_PUBLIC_GRAFANA_FARO_URL=${NEXT_PUBLIC_GRAFANA_FARO_URL:-https://telemetry-intake.grafana.net/v1/traces}
+      - NEXT_PUBLIC_GRAFANA_FARO_API_KEY=${NEXT_PUBLIC_GRAFANA_FARO_API_KEY}
+      - NEXT_PUBLIC_ENV=${NEXT_PUBLIC_ENV:-production}
+      - NEXT_PUBLIC_FARO_SAMPLE_RATE=${NEXT_PUBLIC_FARO_SAMPLE_RATE:-0.1}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
